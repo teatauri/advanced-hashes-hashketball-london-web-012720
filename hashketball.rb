@@ -302,6 +302,9 @@ def player_with_longest_name
   return names.max_by(&:length)
 end
 
+
+########## DID LONGEST NAME GET MOST STEALS? ###########
+
 def long_name_steals_a_ton?
   hash = game_hash()
   longname = player_with_longest_name()
