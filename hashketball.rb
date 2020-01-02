@@ -305,15 +305,31 @@ end
 def long_name_steals_a_ton?
   hash = game_hash()
   longname = player_with_longest_name()
+  steals = []
+  
+  # Find the most steals 
   hash.each do |team, attributes|
     attributes.each do |key, stats|
       if key == :players
         stats.each do |player|
-          if player[:player_name] == longname
-            return player[:steals]
-          end
+          steals << player[:steals]
         end
       end
+    end
+  end
+  max = steals.max
+  
+  # Find if player with most steals also has longest name
+  hash.each do |team, attributes|
+    players = hash[team][:players]
+    i = 0
+    while i < players.length
+      if players[i][:player_name] == longname
+        if players[i][:steals] == max
+          return true
+        end
+      end
+    i += 1
     end
   end
 end
