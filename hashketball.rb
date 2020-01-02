@@ -288,4 +288,17 @@ def winning_team
   score1 > score2 ? "Brooklyn Nets" : "Charlotte Hornets"
 end
 
+def player_with_longest_name
+  hash = game_hash()
+  names = []
+  hash.each do |team, attrubutes|
+    players = hash[team][:players]
+    i = 0
+    while i < players.length
+      names << players[i][:player_name]
+    i += 1
+    end
+  end
+  return names.max_by(&:length)
+end
 
